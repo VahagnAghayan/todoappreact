@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useFetch } from './hooks/useFetch';
+
+import { configs } from './configs/mainConfig';
+import { todoActions } from './store';
+
+import Error from './components/Error';
+import TodoList from './components/TodoList';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+  const { setTodos } = todoActions;
+  const { connection: { BASE_URL: url } } = configs;
+  const { data, error } = useFetch(url);
+
+  useEffect(() => {
+    dispatch(setTodos(data))
+  },[data,dispatch,setTodos])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {data && <TodoList />}
+      {error && <Error />}
+    </>
+  )
 }
 
 export default App;
