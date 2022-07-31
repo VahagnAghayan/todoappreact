@@ -1,0 +1,49 @@
+.main {
+  max-width: 400px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.buttonAdd {
+  color: black;
+  background-color: greenyellow;
+  height: 40px;
+  width: 100px;
+  margin: 5px auto;
+  padding: auto;
+  border-radius: 20px;
+}
+
+.buttonAdd:hover {
+  color: red;
+  background-color: blue;
+}
+
+.buttonClear {
+  color: black;
+  background-color: red;
+  height: 40px;
+  width: 100px;
+  margin: 5px auto;
+  padding: auto;
+  border-radius: 20px;
+}
+
+.buttonClear:hover {
+  color: red;
+  background-color: blue;
+}
+
+.todoList {
+  list-style: none;
+  width: 100%;
+}

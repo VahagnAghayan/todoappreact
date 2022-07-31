@@ -10,18 +10,14 @@ export const actions = {
   },
 
   editTodo(state,action) {
-    return state.map((item) => {
-      if(item.id === action.payload.id) {
-        return {
-          id: action.payload.id,
-          title: action.payload.title,
-          description: action.payload.description,
-          color: action.payload.color
-        }
-      } else {
-        return item;
-      }
-    })
+    const index = state.findIndex(item => item.id === action.payload.id);
+    state[index] = {
+      id: action.payload.id,
+      title: action.payload.title,
+      description: action.payload.description,
+      color: action.payload.color
+    }
+    return state;
   },
 
   deleteTodo(state,action) {
@@ -29,4 +25,16 @@ export const actions = {
       return id !== action.payload;
     })
   },
+
+  deleteAllTodos(state,action) {
+    return state = [];
+  }
+}
+
+export const actionTypes = {
+  SET_TODOS: 'todos/setTodos',
+  ADD_TODO: 'todos/addTodo',
+  EDIT_TODO: 'todos/editTodo',
+  DELETE_TODO: 'todos/deleteTodo',
+  DELETE_ALL_TODO: 'todos/deleteAllTodos',
 }

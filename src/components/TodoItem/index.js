@@ -6,6 +6,7 @@ import { EDIT, DELETE } from '../../constants';
 
 import Modal from '../Modal';
 
+import classes from './TodoItem.module.css';
 
 const TodoItem = ({ id, title, description, color }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -17,12 +18,13 @@ const TodoItem = ({ id, title, description, color }) => {
   },[setOpenModal]);
 
   return (
-    <li>
-      <div style={{}}>
-        <h3>{title}</h3>
+    <li style={{backgroundColor: color}} className={classes.todoItem}>
+      <div>
+        <h3 className={classes.heading}>{title}</h3>
         <p>{description}</p>
       </div>
-      <button onClick={modalToggler}>{EDIT}</button>
+      <div>
+      <button className={classes.edit} onClick={modalToggler}>{EDIT}</button>
       {openModal && (
         <Modal
           edit={true}
@@ -33,7 +35,8 @@ const TodoItem = ({ id, title, description, color }) => {
           modalToggler={modalToggler}
         />
       )}
-      <button onClick={() => dispatch(deleteTodo(id))}>{DELETE}</button>
+      <button className={classes.delete} onClick={() => dispatch(deleteTodo(id))}>{DELETE}</button>
+      </div>
     </li>
   );
 };

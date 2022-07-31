@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useFetch } from './hooks/useFetch';
+import { useFetch } from './hooks/useFetch.js';
 
 import { configs } from './configs/mainConfig';
 import { todoActions } from './store';
@@ -20,10 +20,10 @@ function App() {
   },[data,dispatch,setTodos])
 
   return (
-    <>
+    <div className='App'>
       {data && <TodoList />}
       {error && <Error />}
-    </>
+    </div>
   )
 }
 

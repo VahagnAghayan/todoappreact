@@ -1,5 +1,5 @@
-import { configs } from "../../configs/mainConfig";
-import { POST_METHOD, PATCH_METHOD, DELETE_METHOD } from "../../constants";
+import { configs } from "../configs/mainConfig";
+import { POST_METHOD, PATCH_METHOD, DELETE_METHOD } from "../constants";
 
 const { connection: { BASE_URL: url }, contentType } = configs;
 

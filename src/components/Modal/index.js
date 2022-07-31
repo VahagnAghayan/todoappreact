@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { todoActions } from '../../store';
 import { TITLE, DESCRIPTION, COLOR, DONE, CLOSE } from '../../constants';
 
+import classes from './Modal.module.css';
+
 const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
   const dispatch = useDispatch();
   const { editTodo, addTodo } = todoActions;
@@ -13,14 +15,14 @@ const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
   const colorRef = useRef();
   const descriptionRef = useRef();
 
-  const Done = useCallback(
+  const done = useCallback(
     (id, title, description, color) => {
       if (titleRef.current.value === '' || descriptionRef.current.value === '') {
         alert('Description and Title Fields are required');
         return;
       }
       if (add) {
-        dispatch(addTodo({ title, color, description }));
+        dispatch(addTodo({ title, description, color }));
         modalToggler();
       }
       if (edit) {
@@ -33,9 +35,9 @@ const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
 
   const portalContent = useMemo(
     () => (
-      <div>
-        <ul>
-          <li>
+      <div className={classes.modal}>
+        <ul className={classes.modalContent}>
+          <li className={classes.modalItems}>
             <label htmlFor="title">{TITLE}</label>
             <input
               ref={titleRef}
@@ -45,7 +47,7 @@ const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
               defaultValue={title ? title : null}
             ></input>
           </li>
-          <li>
+          <li className={classes.modalItems}>
             <label htmlFor="description">{DESCRIPTION}</label>
             <input
               ref={descriptionRef}
@@ -55,7 +57,7 @@ const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
               defaultValue={description ? description : null}
             ></input>
           </li>
-          <li>
+          <li className={classes.modalItems}>
             <label htmlFor="color">{COLOR}</label>
             <input
               ref={colorRef}
@@ -68,17 +70,18 @@ const Modal = ({ id, title, description, color, modalToggler, add, edit }) => {
         </ul>
         <div>
           <button
+            className={classes.done}
             onClick={() =>
-              Done(id, titleRef.current.value, descriptionRef.current.value, colorRef.current.value)
+              done(id, titleRef.current.value, descriptionRef.current.value, colorRef.current.value)
             }
           >
             {DONE}
           </button>
-          <button onClick={modalToggler}>{CLOSE}</button>
+          <button className={classes.close} onClick={modalToggler}>{CLOSE}</button>
         </div>
       </div>
     ),
-    [id, title, color, description, modalToggler, Done],
+    [id, title, color, description, modalToggler, done],
   );
 
   return createPortal(portalContent, document.getElementById('modal'));

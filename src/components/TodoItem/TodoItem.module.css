@@ -1,0 +1,44 @@
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid green;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: aqua;
+}
+
+.heading {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.edit {
+  color: black;
+  background-color: yellow;
+  height: 30px;
+  width: 75px;
+  padding: auto;
+  border-radius: 15px;
+}
+
+.edit:hover {
+  color: red;
+  background-color: blue;
+}
+
+.delete {
+  color: black;
+  background-color: red;
+  height: 30px;
+  width: 75px;
+  padding: auto;
+  border-radius: 15px;
+}
+
+.delete:hover {
+  color: red;
+  background-color: blue;
+}
